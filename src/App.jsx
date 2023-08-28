@@ -33,7 +33,6 @@ function App() {
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/login" component={<Login />} />
           <Route path="/todo" element={<Todo />} />
         </Routes>
         {/* 練習區 */}
