@@ -1,5 +1,5 @@
 import './App.css';
-import { HashRouter, NavLink, Route, Routes, useNavigate } from 'react-router-dom';
+import { HashRouter, NavLink, Route, Routes, useNavigate, useParams, Outlet } from 'react-router-dom';
 
 var Logout = () => {
   var isLogin;
@@ -28,6 +28,18 @@ const Register = () => {
   return <p>這是註冊頁面</p>;
 };
 
+const Post = () => {
+  return <div>
+    <p>這是Post頁面</p>
+    <Outlet />
+  </div>
+};
+
+const Postid = () => {
+  var params = useParams();
+  return <p>Post ID: {params.postID}</p>
+}
+
 function App() {
   return (
     <HashRouter>
@@ -45,12 +57,21 @@ function App() {
           <NavLink to="/todo">
             <p>Todo 頁面</p>
           </NavLink>
+          <NavLink to="/post">
+            <p>Post 頁面</p>
+          </NavLink>
+          <NavLink to="/post/Sarah">
+            <p>Post ID 範例</p>
+          </NavLink>
         </div>
         {/* Routes, Route 練習區 */}
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/todo" element={<Todo />} />
+          <Route path="/post" element={<Post />} >
+            <Route path=":postID" element={<Postid />} />
+          </Route>
         </Routes>
         {/* 練習區 */}
       </div>
